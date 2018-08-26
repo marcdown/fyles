@@ -8,8 +8,9 @@ module.exports = {
         development: {
             host: "localhost",
             port: 8545,
-            gas: 4700000,
-            network_id: "5777"
+            gas: 6721975,
+            gasPrice: 20000000000,
+            network_id: "*"
         },
         rinkeby: {
             provider: function() {

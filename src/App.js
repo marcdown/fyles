@@ -14,18 +14,20 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-		web3: null,
-		contract: null,
-		files: null,
-		filesHtml: null,
-		buffer: null,
-		ipfsHash: null,
-		ipfsHex: null,
-		fileHash: null,
-		fileHashFunction: null,
-		fileHashSize: null,
-		fileType: '3',
-		transactionHash: null
+            web3: null,
+            account: null,
+            displayAddress: '',
+            contract: null,
+            files: null,
+            filesHtml: null,
+            buffer: null,
+            ipfsHash: null,
+            ipfsHex: null,
+            fileHash: null,
+            fileHashFunction: null,
+            fileHashSize: null,
+            fileType: '3',
+            transactionHash: null
 		};
 	}
 
@@ -64,35 +66,42 @@ class App extends Component {
 		});
 
 		// Add file to contract
-		const transaction = await this.state.contract.addFile(this.state.fileHash, this.state.fileHashFunction, this.state.fileHashSize, this.state.fileType, {from: this.state.web3.eth.accounts[0]});
+		const transaction = await this.state.contract.addFile(this.state.fileHash, this.state.fileHashFunction, this.state.fileHashSize, this.state.fileType, {from: this.state.account});
 		this.setState({ transactionHash: transaction['tx'] });
 
 		// Reload files
 		this.getAllFiles();
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		// Get network provider and web3 instance
-		getWeb3
-		.then(results => {
-		this.setState({ web3: results.web3 });
+		getWeb3.then(results => {
+		    this.setState({ web3: results.web3 });
 
-		// Instantiate contract once web3 provided
-		this.instantiateContract()
-		})
-		.catch(() => {
-		console.log('Error finding web3.')
+		    // Instantiate contract once web3 provided
+		    this.instantiateContract()
+		}).catch(() => {
+		    console.log('Error finding web3.')
 		});
 	}
 
+    setDisplayAddress(address) {
+        if (address.length > 7) {
+            var displayAddress = address.substring(0, 7) + '...';
+            this.setState({ displayAddress: displayAddress });
+        }
+    }
 
 	instantiateContract() {
 		const contract = require('truffle-contract');
 		const fileStorage = contract(FileStorageContract);
 		fileStorage.setProvider(this.state.web3.currentProvider);
 
-		// Get accounts
+		// Get accounts and store preferred wallet based on index defined in .env
 		this.state.web3.eth.getAccounts((error, accounts) => {
+            const account = accounts[0];
+            this.setState({ account: account });
+            this.setDisplayAddress(account.toString());
             fileStorage.deployed().then((contract) => {
                 if (error) throw error;
                 this.setState({ contract: contract });
@@ -105,9 +114,9 @@ class App extends Component {
 
 	async getAllFiles() {
 		// Get file hashes
-		const fileHashes = await this.state.contract.getAllFileHashes({from: this.state.web3.eth.accounts[0]});
+		const fileHashes = await this.state.contract.getAllFileHashes({from: this.state.account});
 		// Get file metadata
-		const fileMetadata = await this.state.contract.getAllFileMetadata({from: this.state.web3.eth.accounts[0]});
+		const fileMetadata = await this.state.contract.getAllFileMetadata({from: this.state.account});
 		
 		// Return most recent files first
 		var files = []
@@ -164,6 +173,7 @@ class App extends Component {
         <div className="App">
             <header className="App-header">
                 <h1 className="App-title">Fyles</h1>
+                <h1 className="App-address">{this.state.displayAddress}</h1>
             </header>
             <div className="App-uploader">
                 <h1>Fyle Upload</h1>

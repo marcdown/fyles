@@ -6,6 +6,8 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
  * @title File Storage contract
  * @dev Every address will contain one or more file hashes and 
  *      associated metadata (hash function, hash size, file type, etc.)
+ * @dev Constructor initialization and owner assignment have been
+ *      delegated to the Ownable contract
  */
 contract FileStorage is Ownable  {
 

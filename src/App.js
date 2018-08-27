@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { BeatLoader } from 'react-spinners';
 import FileStorageContract from './abi/FileStorage.json';
 import FileInfo from './components/FileInfo.js';
 import getWeb3 from './utils/getWeb3';
@@ -19,6 +20,7 @@ class App extends Component {
             account: null,
             displayAddress: null,
             contract: null,
+            loading: false,
             files: null,
             filesHtml: null,
             buffer: null,
@@ -55,6 +57,7 @@ class App extends Component {
 
         // Save document to IPFS and set file hash + metadata
         if (this.state.buffer != null) {
+            this.setState({ loading: true });
             const files = await ipfs.add(this.state.buffer);
             const hash = files[0].hash;
             const hexValues = this.ipfsHashToHexValues(hash);
@@ -69,7 +72,10 @@ class App extends Component {
 
             // Add file to contract
             const transaction = await this.state.contract.addFile(this.state.fileHash, this.state.fileHashFunction, this.state.fileHashSize, this.state.fileType, {from: this.state.account});
-            this.setState({ transactionHash: transaction['tx'] });
+            this.setState({ 
+                transactionHash: transaction['tx'],
+                loading: false
+            });
 
             // Reload files
             this.getAllFiles();
@@ -187,6 +193,9 @@ class App extends Component {
                 <h1 className="App-address">{this.state.displayAddress}</h1>
             </header>
             <div className="App-content">
+                <div className='loading'>
+                    <BeatLoader sizeUnit={"px"} size={30} color={'#999999'} loading={this.state.loading}/>
+                </div>
                 <div className="App-uploader">
                     <Form onSubmit={this.onSubmit}>
                         <input type="file" name="file" id="file" className="inputfile" onChange={this.captureFile}/>

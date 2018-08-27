@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Nav, Navbar, NavItem} from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import FileStorageContract from './abi/FileStorage.json';
 import FileInfo from './components/FileInfo.js';
 import getWeb3 from './utils/getWeb3';
@@ -182,18 +182,10 @@ class App extends Component {
     render() {
     return (
         <div className="App">
-            <Navbar inverse>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        Fyles
-                    </Navbar.Brand>
-                </Navbar.Header>
-                <Nav pullRight>
-                    <NavItem eventKey={1} href="#">
-                        {this.state.displayAddress}
-                    </NavItem>
-                </Nav>
-            </Navbar>;
+            <header className="App-header">
+                <h1 className="App-title">Fyles</h1>
+                <h1 className="App-address">{this.state.displayAddress}</h1>
+            </header>
             <div className="App-content">
                 <div className="App-uploader">
                     <Form onSubmit={this.onSubmit}>

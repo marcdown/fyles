@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, Button, Form } from 'react-bootstrap';
+import { Alert, Button, Form, Nav, Navbar, NavItem} from 'react-bootstrap';
 import FileStorageContract from './abi/FileStorage.json';
 import FileInfo from './components/FileInfo.js';
 import getWeb3 from './utils/getWeb3';
@@ -17,7 +17,7 @@ class App extends Component {
 		this.state = {
             web3: null,
             account: null,
-            displayAddress: '',
+            displayAddress: null,
             contract: null,
             files: null,
             filesHtml: null,
@@ -34,8 +34,8 @@ class App extends Component {
 
 	captureFile = (event) => {
 		event.stopPropagation();
-		event.preventDefault();
-		const file = event.target.files[0];
+        event.preventDefault();
+        const file = event.target.files[0];
 		let reader = new window.FileReader();
 		reader.readAsArrayBuffer(file);
 		reader.onloadend = () => this.convertToBuffer(reader); 
@@ -102,16 +102,24 @@ class App extends Component {
 
 		// Get accounts and store preferred wallet based on index defined in .env
 		this.state.web3.eth.getAccounts((error, accounts) => {
-            const account = accounts[0];
-            this.setState({ account: account });
-            this.setDisplayAddress(account);
-            fileStorage.deployed().then((contract) => {
-                if (error) throw error;
-                this.setState({ contract: contract });
-                
-                // Get files
-                this.getAllFiles();
-            })
+            // No accounts
+            if (accounts.length === 0) {
+                console.log('No account!');
+                alert("Please unlock your wallet and reload the page.");
+            }
+            // Save account info
+            else {
+                const account = accounts[0];
+                this.setState({ account: account });
+                this.setDisplayAddress(account);
+                fileStorage.deployed().then((contract) => {
+                    if (error) throw error;
+                    this.setState({ contract: contract });
+                    
+                    // Get files
+                    this.getAllFiles();
+                })
+            }
 		})
 	}
 

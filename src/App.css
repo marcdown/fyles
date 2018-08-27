@@ -102,6 +102,18 @@
     background-color: #0a5170;
 }
 
+/* File type selector */
+.filetype {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+/* Upload button */
+.upload-btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 /* Loading animation */
 
 .loading {

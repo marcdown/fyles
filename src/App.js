@@ -205,17 +205,17 @@ class App extends Component {
                             </svg>
                             <span>Choose a fyle...</span>
                         </label>
-                        <p>
+                        <div className="filetype">
                             <select value={this.state.fileType} onChange={this.handleFileTypeChange}>
                                 <option value="1">Image</option>
                                 <option value="2">Video</option>
                                 <option value="3">Document</option>
                                 <option value="0">Other</option>
                             </select>
-                        </p>
-                        <p>
+                        </div>
+                        <div className="upload-btn">
                             <Button bsSize="large" type="submit">Upload</Button>
-                        </p>
+                        </div>
                     </Form>
                     <p>IPFS hash: <a href={ipfsBaseUrl + this.state.ipfsHash} target="_blank">{this.state.ipfsHash}</a></p>
                     {/*<p>IPFS hex: {this.state.ipfsHex}</p>

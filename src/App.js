@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { BeatLoader } from 'react-spinners';
 import FileStorageContract from './abi/FileStorage.json';
-import FileInfo from './components/FileInfo.js';
+import FyleInfo from './components/FyleInfo';
 import getWeb3 from './utils/getWeb3';
 import ipfs from './utils/ipfs';
 import bs58 from 'bs58';
@@ -145,9 +145,9 @@ class App extends Component {
 		}
         this.setState({ files: files });
 
-        // Initialize FileInfo objects
+        // Initialize FyleInfo objects
 		const filesHtml = files.map((file, index) => 
-		    <FileInfo key={index} file={file}/>
+		    <FyleInfo key={index} file={file}/>
 		);
 		this.setState({ filesHtml: filesHtml });
 	}

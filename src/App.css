@@ -36,13 +36,16 @@
 }
 
 .App-fyles {
-    font-size: medium;
+    font-size: 0.8em;
 }
 
 .App-fyle {
-	background-color: #a6b9bf;
+    background-color: #a6b9bf;
     padding: 40px 10px;
     border-bottom: 3px solid #1399d3;
+}
+.App-fyle .img-responsive {
+    margin: 0 auto;
 }
 
 .App-fyle + .App-fyle{

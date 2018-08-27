@@ -1,6 +1,6 @@
 # Design Patterns
 
-Listed below are some of the design pattern decisions I've made.
+Listed below are some of the design patterns adopted while building Fyles.
 
 ## Circuit Breaker :boom:
 In the event of an issue, the contract owner has the ability to disable adding new files to the smart contract via the `setCanAddFile` function. This effectively switches the contract to a read-only state which could prove useful in the event of a frontend bug injecting invalid data into the contract. Once resolved, the owner can re-enable file uploads using the same function. This will also prove useful during contract upgrades (once upgradable contracts are implemented prior to mainnet release).
@@ -16,7 +16,7 @@ Even though you have a certain amount of control around how your UI interacts wi
 
 ---
 
-Here are some of the design patterns I opted to forego and the reasoning behind those decisions.
+Listed below are some of the design patterns rejected while building Fyles.
 
 ## Auto Deprecation :bomb:
 This is useful if you require part (or all) of your contract functionality to alter at a future date. One example is a voting contract that 'closes' the poll at a specific time. Another more extreme example is to force a `selfdestruct` call after a specific amount of time has passed since deployment; this could be used during a beta test in order to guarantee all users switch to the most recent contract. I decided against auto deprecation as I'm not conducting a beta test.

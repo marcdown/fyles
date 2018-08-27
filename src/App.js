@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Button, Form, Nav, Navbar, NavItem} from 'react-bootstrap';
+import { Button, Form, Nav, Navbar, NavItem} from 'react-bootstrap';
 import FileStorageContract from './abi/FileStorage.json';
 import FileInfo from './components/FileInfo.js';
 import getWeb3 from './utils/getWeb3';

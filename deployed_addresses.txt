@@ -1,0 +1,3 @@
+FileStorage contract was deployed to Rinkeby testnet at address 0xe3daac3841f15e8156880cb2a95fd5ca5b25ee1b in tx 0x1582cb8cf0708911419aa2df68f865911f5ee358bf4081398b5a379abb0432cb.
+
+Contract source code can be verified at https://rinkeby.etherscan.io/address/0xe3daac3841f15e8156880cb2a95fd5ca5b25ee1b#code.

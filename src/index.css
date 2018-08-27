@@ -1,5 +1,20 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	margin: 0;
+    padding: 0;
+    font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+	color: #333333;
+	background-color: #c3d9e0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	outline: none;
+	color: #0a5170;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	color: #0a5170;
 }

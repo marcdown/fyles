@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button, Form } from 'react-bootstrap';
 import FileStorageContract from './abi/FileStorage.json';
 import FileInfo from './components/FileInfo.js';
 import getWeb3 from './utils/getWeb3';
@@ -54,24 +54,26 @@ class App extends Component {
 		event.preventDefault();
 
         // Save document to IPFS and set file hash + metadata
-        const files = await ipfs.add(this.state.buffer);
-		const hash = files[0].hash;
-		const hexValues = this.ipfsHashToHexValues(hash);
-		
-		this.setState({
-			ipfsHash: hash,
-			ipfsHex: hexValues.ipfsHex,
-			fileHashFunction: hexValues.hashFunction,
-			fileHashSize: hexValues.hashSize,
-			fileHash: hexValues.fileHash
-		});
+        if (this.state.buffer != null) {
+            const files = await ipfs.add(this.state.buffer);
+            const hash = files[0].hash;
+            const hexValues = this.ipfsHashToHexValues(hash);
+            
+            this.setState({
+                ipfsHash: hash,
+                ipfsHex: hexValues.ipfsHex,
+                fileHashFunction: hexValues.hashFunction,
+                fileHashSize: hexValues.hashSize,
+                fileHash: hexValues.fileHash
+            });
 
-		// Add file to contract
-		const transaction = await this.state.contract.addFile(this.state.fileHash, this.state.fileHashFunction, this.state.fileHashSize, this.state.fileType, {from: this.state.account});
-		this.setState({ transactionHash: transaction['tx'] });
+            // Add file to contract
+            const transaction = await this.state.contract.addFile(this.state.fileHash, this.state.fileHashFunction, this.state.fileHashSize, this.state.fileType, {from: this.state.account});
+            this.setState({ transactionHash: transaction['tx'] });
 
-		// Reload files
-		this.getAllFiles();
+            // Reload files
+            this.getAllFiles();
+        }
 	}
 
 	componentDidMount() {
@@ -87,7 +89,7 @@ class App extends Component {
 	}
 
     setDisplayAddress(address) {
-        if (address.length > 7) {
+        if (address != null && address.length > 7) {
             var displayAddress = address.substring(0, 10) + '...';
             this.setState({ displayAddress: displayAddress });
         }
@@ -102,7 +104,7 @@ class App extends Component {
 		this.state.web3.eth.getAccounts((error, accounts) => {
             const account = accounts[0];
             this.setState({ account: account });
-            this.setDisplayAddress(account.toString());
+            this.setDisplayAddress(account);
             fileStorage.deployed().then((contract) => {
                 if (error) throw error;
                 this.setState({ contract: contract });
@@ -172,10 +174,18 @@ class App extends Component {
     render() {
     return (
         <div className="App">
-            <header className="App-header">
-                <h1 className="App-title">Fyles</h1>
-                <h1 className="App-address">{this.state.displayAddress}</h1>
-            </header>
+            <Navbar inverse>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        Fyles
+                    </Navbar.Brand>
+                </Navbar.Header>
+                <Nav pullRight>
+                    <NavItem eventKey={1} href="#">
+                        {this.state.displayAddress}
+                    </NavItem>
+                </Nav>
+            </Navbar>;
             <div className="App-content">
                 <div className="App-uploader">
                     <Form onSubmit={this.onSubmit}>
@@ -195,16 +205,16 @@ class App extends Component {
                             </select>
                         </p>
                         <p>
-                            <Button bsStyle="primary" type="submit">Upload</Button>
+                            <Button bsSize="large" type="submit">Upload</Button>
                         </p>
                     </Form>
-                    <p>IPFS hash: <code><a href={ipfsBaseUrl + this.state.ipfsHash} target="_blank">{this.state.ipfsHash}</a></code></p>
-                    {/*<p>IPFS hex: <code>{this.state.ipfsHex}</code></p>
-                    <p>Hash function: <code>{this.state.fileHashFunction}</code></p>
-                    <p>Hash size: <code>{this.state.fileHashSize}</code></p>
-                    <p>File hash: <code>{this.state.fileHash}</code></p>
-                    <p>File type: <code>{this.state.fileType}</code></p>*/}
-                    <p>Transaction hash: <code><a href={txBaseUrl + this.state.transactionHash} target="_blank">{this.state.transactionHash}</a></code></p>
+                    <p>IPFS hash: <a href={ipfsBaseUrl + this.state.ipfsHash} target="_blank">{this.state.ipfsHash}</a></p>
+                    {/*<p>IPFS hex: {this.state.ipfsHex}</p>
+                    <p>Hash function: {this.state.fileHashFunction}</p>
+                    <p>Hash size: {this.state.fileHashSize}</p>
+                    <p>File hash: {this.state.fileHash}</p>
+                    <p>File type: {this.state.fileType}</p>*/}
+                    <p>Transaction hash: <a href={txBaseUrl + this.state.transactionHash} target="_blank">{this.state.transactionHash}</a></p>
                 </div>
                 <div className="App-fyles">
                     {this.state.filesHtml}

@@ -7,7 +7,8 @@ import ipfs from './utils/ipfs';
 import bs58 from 'bs58';
 import './App.css';
 
-const ipfsBaseUrl = 'http://gateway.ipfs.io/ipfs/';
+const ipfsBaseUrl = 'https://gateway.ipfs.io/ipfs/';
+const txBaseUrl = 'https://rinkeby.etherscan.io/tx/';
 
 class App extends Component {
 	constructor(props) {
@@ -87,7 +88,7 @@ class App extends Component {
 
     setDisplayAddress(address) {
         if (address.length > 7) {
-            var displayAddress = address.substring(0, 7) + '...';
+            var displayAddress = address.substring(0, 10) + '...';
             this.setState({ displayAddress: displayAddress });
         }
     }
@@ -175,31 +176,39 @@ class App extends Component {
                 <h1 className="App-title">Fyles</h1>
                 <h1 className="App-address">{this.state.displayAddress}</h1>
             </header>
-            <div className="App-uploader">
-                <h1>Fyle Upload</h1>
-				<Form onSubmit={this.onSubmit}>
-					<input type="file" onChange={this.captureFile}/>
-					<select value={this.state.fileType} onChange={this.handleFileTypeChange}>
-						<option value="1">Image</option>
-						<option value="2">Video</option>
-						<option value="3">Document</option>
-						<option value="0">Other</option>
-					</select>
-					<p>
-					<Button bsStyle="primary" type="submit">Upload</Button>
-					</p>
-				</Form>
-				<p><code>IPFS hash: </code><a href={ipfsBaseUrl + this.state.ipfsHash} target="_blank">{this.state.ipfsHash}</a></p>
-				<p><code>IPFS hex: </code>{this.state.ipfsHex}</p>
-				<p><code>Hash function: </code>{this.state.fileHashFunction}</p>
-				<p><code>Hash size: </code>{this.state.fileHashSize}</p>
-				<p><code>File hash: </code>{this.state.fileHash}</p>
-				<p><code>File type: </code>{this.state.fileType}</p>
-				<p><code>Transaction hash: </code>{this.state.transactionHash}</p>
-            </div>
-            <div className="App-fyles">
-                <h1>Fyles</h1>
-				{this.state.filesHtml}
+            <div className="App-content">
+                <div className="App-uploader">
+                    <Form onSubmit={this.onSubmit}>
+                        <input type="file" name="file" id="file" className="inputfile" onChange={this.captureFile}/>
+                        <label htmlFor="file">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+                                <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+                            </svg>
+                            <span>Choose a fyle...</span>
+                        </label>
+                        <p>
+                            <select value={this.state.fileType} onChange={this.handleFileTypeChange}>
+                                <option value="1">Image</option>
+                                <option value="2">Video</option>
+                                <option value="3">Document</option>
+                                <option value="0">Other</option>
+                            </select>
+                        </p>
+                        <p>
+                            <Button bsStyle="primary" type="submit">Upload</Button>
+                        </p>
+                    </Form>
+                    <p>IPFS hash: <code><a href={ipfsBaseUrl + this.state.ipfsHash} target="_blank">{this.state.ipfsHash}</a></code></p>
+                    {/*<p>IPFS hex: <code>{this.state.ipfsHex}</code></p>
+                    <p>Hash function: <code>{this.state.fileHashFunction}</code></p>
+                    <p>Hash size: <code>{this.state.fileHashSize}</code></p>
+                    <p>File hash: <code>{this.state.fileHash}</code></p>
+                    <p>File type: <code>{this.state.fileType}</code></p>*/}
+                    <p>Transaction hash: <code><a href={txBaseUrl + this.state.transactionHash} target="_blank">{this.state.transactionHash}</a></code></p>
+                </div>
+                <div className="App-fyles">
+                    {this.state.filesHtml}
+                </div>
             </div>
         </div>
     );

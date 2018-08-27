@@ -1,12 +1,27 @@
-.App {
-    text-align: center;
+body {
+	font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+	color: #333333;
+	background-color: #c3d9e0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	outline: none;
+	color: #0a5170;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	color: #0a5170;
 }
 
 .App-header {
+    color: white;
     background-color: #222;
     height: 60px;
     padding: 5px 10px 5px 10px;
-    color: white;
 }
 
 .App-title {
@@ -17,17 +32,91 @@
 .App-address {
     float: right;
     font-size: 1.2em;
+    overflow: hidden;
     padding-top: 5px;
     text-align: right;
-    width: 200px;
-    overflow: hidden;
     text-overflow: ellipsis;
+    width: 200px;
+}
+
+.App-content {
+    width: 100%;
+	max-width: 800px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 20px 10px 20px 10px;
 }
 
 .App-uploader {
-    font-size: large;
+    background-color: #a6b9bf;
+    padding: 40px 10px 40px 10px;
+    border-bottom: 3px solid #1399d3;
+    margin-bottom: 100px;
 }
 
 .App-fyles {
     font-size: medium;
+}
+
+.box {
+	background-color: #a6b9bf;
+    padding: 40px 10px 40px 10px;
+    border-bottom: 3px solid #1399d3;
+}
+
+.box + .box {
+	margin-top: 60px;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    color: #bcccd3;
+    background-color: #1399d3;
+    max-width: 80%;
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+    /* pointer-events: none; */
+    /* in case of FastClick lib use */
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label,
+.inputfile + label:hover {
+    background-color: #0a5170;
 }

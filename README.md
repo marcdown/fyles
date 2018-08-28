@@ -12,6 +12,8 @@ You can read more about Proof of Existence [here](https://www.newsbtc.com/proof-
 ## Usage
 Fyles works on any Web3-enabled browser! This could be Chrome Desktop with [MetaMask extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn), Firefox Android with [MetaMask add-on](https://addons.mozilla.org/en-US/android/addon/ether-metamask) and even native mobile dApp browsers like [Coinbase Wallet](https://www.toshi.org) and [Cipher](https://www.cipherbrowser.com)!
 
+You can take Fyles for a spin on the [Rinkeby testnet](https://www.rinkeby.io) by going to http://fyles-rinkeby.s3-website-us-east-1.amazonaws.com.
+
 ## Installation
 
 ### Node

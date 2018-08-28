@@ -68,7 +68,7 @@ Copy your wallet mnemonic and add to `WALLET_MNENOMIC`.
 Install [Truffle](https://truffleframework.com/truffle) and [Ganache](https://truffleframework.com/ganache).
 ```
 $ npm install -g truffle
-$ npm install -g ganache
+$ npm install -g ganache-cli
 ```
 
 ### Solidity development

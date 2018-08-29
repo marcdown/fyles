@@ -14,7 +14,7 @@ Fyles works on any Web3-enabled browser! This could be Chrome Desktop with [Meta
 
 You can take Fyles for a spin on the [Rinkeby testnet](https://www.rinkeby.io) by going to http://fyles-rinkeby.s3-website-us-east-1.amazonaws.com.
 
-[![alt text](https://github.com/marcdown/fyles/raw/master/fyles-demo.png "Fyles Demo")](https://vimeo.com/287005706)
+[![alt text](https://github.com/marcdown/fyles/raw/master/fyles-demo.png "Fyles Demo")](https://gateway.ipfs.io/ipfs/QmcfFznrjPd441GxkEJkg1PkpoZy4r4Vq9iHLW8SLwt5CW)
 
 ## Installation
 

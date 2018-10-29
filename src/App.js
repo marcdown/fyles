@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { BeatLoader } from 'react-spinners';
-import FileStorageContract from './abi/FileStorage.json';
+import FileStorageContract from './contracts/FileStorage.json';
 import FyleInfo from './components/FyleInfo';
 import getWeb3 from './utils/getWeb3';
 import ipfs from './utils/ipfs';

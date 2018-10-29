@@ -1,11 +1,11 @@
 # osx
 .DS_Store
 
-# node dependencies
-node_modules/
-
 # builds
-build/
+build
 
-# local env variables
-.env
+# node dependencies
+node_modules
+
+# contracts symlink
+src/contracts

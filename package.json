@@ -4,23 +4,25 @@
   "private": true,
   "dependencies": {
     "bs58": "^4.0.1",
-    "dotenv": "2.0.0",
     "ipfs-api": "^24.0.1",
-    "openzeppelin-solidity": "1.12.0",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.3",
     "react-dom": "^16.4.2",
     "react-scripts": "2.0.0-next.3e165448",
     "react-spinners": "^0.4.5",
-    "truffle-contract": "^3.0.6",
-    "truffle-hdwallet-provider": "0.0.6",
-    "truffle-solidity-loader": "^0.1.0"
+    "truffle-contract": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "link-contracts": "run-script-os",
+    "link-contracts:linux:darwin": "cd src && ln -s ../../fyles-contracts/build/contracts contracts",
+    "link-contracts:win32": "cd src && mklink \\D contracts ..\\..\\fyles-contracts\\build\\contracts"
+  },
+  "devDependencies": {
+    "run-script-os": "^1.0.3"
   },
   "browserslist": {
     "development": [

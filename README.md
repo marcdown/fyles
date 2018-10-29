@@ -19,7 +19,7 @@ You can take fyles for a spin on the [Rinkeby testnet](https://www.rinkeby.io) b
 ### Smart contracts
 
 #### fyles-contracts
-Check out the [fyles-contracts](https://github.com/marcdown/fyles-contracts) repo and run the commands to build and migrate.
+Check out the [fyles-contracts](https://github.com/marcdown/fyles-contracts) repo. Instructions on how to build and migrate are included in the README.
 
 #### contracts symlink
 Run `yarn link-contracts` to create a symlink in `src/`. The script assumes the `fyles-contracts` repo lives in the same directory as `fyles`; the path can be adjusted in `package.json`.

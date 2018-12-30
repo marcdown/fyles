@@ -10,9 +10,9 @@ You can read more about IPFS [here](https://hackernoon.com/a-beginners-guide-to-
 ## Usage
 fyles works on any Web3-enabled browser! This could be Chrome Desktop with [MetaMask extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn), Firefox Android with [MetaMask add-on](https://addons.mozilla.org/en-US/android/addon/ether-metamask) and even native mobile dApp browsers like [Coinbase Wallet](https://www.toshi.org) and [Cipher](https://www.cipherbrowser.com)!
 
-You can take fyles for a spin on the [Rinkeby testnet](https://www.rinkeby.io) by going to http://fyles-rinkeby.s3-website-us-east-1.amazonaws.com.
+You can take fyles for a spin on the [Rinkeby testnet](https://www.rinkeby.io) by going to https://rinkeby.fyles.io.
 
-[![alt text](https://github.com/marcdown/fyles/raw/master/fyles-demo.png "fyles Demo")](https://ipfs.io/ipfs/QmcfFznrjPd441GxkEJkg1PkpoZy4r4Vq9iHLW8SLwt5CW)
+[![fyles demo](fyles-demo.png)](https://ipfs.io/ipfs/QmcfFznrjPd441GxkEJkg1PkpoZy4r4Vq9iHLW8SLwt5CW)
 
 ## Installation
 
